@@ -39,4 +39,8 @@ public class CloudinaryConfig {
                 .border("2px_solid_black").crop(action))
                 .imageTag(name);
     }
+    public String transformThis(String name){
+        return cloudinary.url()
+                .transformation(new Transformation().border("2px_solid_red")).generate(name);
+    }
 }
