@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<div class="form-group">
+<label>Movie title</label>
+<input type="text" th:field="*{title}" placeholder="Enter movie title">
+</div>
+<div class="form-group">
+    <label>Year of Release</label>
+    <input type="number" th:field="*{year}" min="1978" max="2020"
+           placeholder="Enter year of release">
+</div>
+<div class="form-group">
+    <label>Description</label>
+    <textarea th:field="*{description}" placeholder = "Enter movie description">
+
+    </textarea>
+</div>
+<input type="submit" value="Add Movie">
+</body>
+</html>

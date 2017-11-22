@@ -23,7 +23,9 @@ public class CloudinaryConfig {
         cloudinary.config.cloudName=cloud;
         cloudinary.config.apiSecret=secret;
         cloudinary.config.apiKey=key;
+        System.out.println("Cloud name:" +cloud);
     }
+
     public Map upload(Object file, Map options){
                 try{
                     return cloudinary.uploader().upload(file, options);
@@ -32,15 +34,33 @@ public class CloudinaryConfig {
                     return null;
                 }
     }
-    public String createUrl(String name, int width, int height, String action){
+    public String createUrl(String name)
+    {
+        //This method generates the URL for the actor's list
         return cloudinary.url()
                 .transformation(new Transformation()
-                .width(width).height(height)
-                .border("2px_solid_black").crop(action))
-                .imageTag(name);
+                .width(100).height(100)
+                .crop("fill")
+                .radius(50).gravity("face")).generate(name);
     }
-    public String transformThis(String name){
+    public String createUrl(String name, int width, int height)
+    {
+        //This method generates the URL for an image whose name is
+        //known and has been provided
         return cloudinary.url()
-                .transformation(new Transformation().border("2px_solid_red")).generate(name);
+                .transformation(new Transformation()
+                        .width(width).height(height)
+                        .crop("fill")
+                        .radius(50).gravity("face")).generate(name);
+    }
+    public String createSmallImage(String url, int width, int height)
+    {
+        //Creates a transformation from the URL provided
+        return cloudinary.url()
+                .transformation(new Transformation()
+                        .width(width).height(height)
+                        .crop("fill")
+                        .radius(50).gravity("face"))
+                .type("fetch").generate(url);
     }
 }
